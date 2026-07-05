@@ -1,0 +1,92 @@
+{
+  "version": "0.1",
+  "bundle": "examples/software-okf",
+  "query": "Why are API requests returning 503 after deploy?",
+  "status": "ok",
+  "concepts": [
+    {
+      "path": "runbooks/debug-503.md",
+      "type": "Runbook",
+      "title": "Debug 503 After Deploy",
+      "why": "Provides the diagnostic sequence for elevated API Gateway 503 responses after a deployment.",
+      "summary": "Check rate-limit changes, gateway logs, auth middleware behavior, route-level error rates, and request-routing tests before rollback or hotfix.",
+      "caveats": [
+        "Do not change database schema while debugging gateway 503s.",
+        "Do not disable auth middleware to reduce errors.",
+        "Do not assume the database is the cause unless gateway logs show database timeouts."
+      ],
+      "citations": [
+        "references/gateway-ops.md"
+      ],
+      "resource": "runbook://api-gateway/debug-503"
+    },
+    {
+      "path": "services/api-gateway.md",
+      "type": "Service",
+      "title": "API Gateway",
+      "why": "Defines the service responsible for auth, rate limits, routing, metrics, and logs.",
+      "summary": "API Gateway receives customer API traffic, applies authentication and rate limits, then routes requests to internal services.",
+      "caveats": [
+        "Do not bypass auth middleware for customer routes.",
+        "Rate-limit changes must be tested with Request Routing Tests.",
+        "503 errors after deploy should follow Debug 503 After Deploy."
+      ],
+      "citations": [
+        "references/service-architecture.md"
+      ],
+      "resource": "service://api-gateway"
+    },
+    {
+      "path": "configs/rate-limits.md",
+      "type": "Config",
+      "title": "Rate Limits",
+      "why": "Rate-limit configuration is a known cause of 503-like spikes after deploy.",
+      "summary": "Rate Limits controls request throttling in API Gateway through request-per-second, burst, and mode settings.",
+      "caveats": [
+        "Use `shadow` mode before enforcing a large limit change.",
+        "A bad rate-limit value can look like a 503 spike when upstream services are healthy.",
+        "After changing this config, run Request Routing Tests."
+      ],
+      "citations": [
+        "references/gateway-ops.md"
+      ],
+      "resource": "config://api-gateway/rate-limits"
+    },
+    {
+      "path": "references/gateway-ops.md",
+      "type": "Reference",
+      "title": "Gateway Operations Manual",
+      "why": "Provides source support for gateway deploy and 503 incident handling.",
+      "summary": "Elevated 503s after deploy should be diagnosed through gateway logs, route changes, auth failures, and rate-limit config.",
+      "caveats": [
+        "This is a fictional source for demonstration. In a real OKF bundle, this file should link to the live runbook or incident-management documentation."
+      ],
+      "citations": [
+        "Fictional gateway operations manual for the OKF demo bundle."
+      ],
+      "resource": "https://docs.example.com/gateway-ops"
+    },
+    {
+      "path": "references/service-architecture.md",
+      "type": "Reference",
+      "title": "Service Architecture Note",
+      "why": "Provides source support for API Gateway responsibilities and constraints.",
+      "summary": "API Gateway handles authentication, rate limits, routing, metrics, and logs. Customer routes must pass through auth middleware.",
+      "caveats": [
+        "This is a fictional source for demonstration. In a real OKF bundle, this file should include an ADR, design doc, or reviewed architecture note."
+      ],
+      "citations": [
+        "Fictional service architecture note for the OKF demo bundle."
+      ],
+      "resource": "https://docs.example.com/service-architecture"
+    }
+  ],
+  "missing": [],
+  "warnings": [
+    {
+      "kind": "demo_source",
+      "message": "This bundle uses fictional sources and placeholder URLs."
+    }
+  ]
+}
+

@@ -1,0 +1,46 @@
+Knowpack eval
+
+Bundle: examples/billing-okf
+Tests: 3
+
+FAIL refund-eligibility
+  query: Can I refund this customer?
+  required concepts: 1/2
+    missing: policies/refund-window.md
+    present: apis/refund-payment.md
+  required citations: 1/2
+    missing: references/support-policy.md
+    present: references/billing-api-docs.md
+  required caveats: 1/2
+    missing: Enterprise contracts can override the standard refund window.
+    present: The agent must not create a refund without a support ticket citation.
+  forbidden concepts: 1 present
+    present: apis/create-invoice.md
+
+PASS explain-revenue-drop
+  query: Why did net revenue drop this week?
+  required concepts: 3/3
+    present: metrics/net-revenue.md
+    present: metrics/churn-rate.md
+    present: playbooks/investigate-revenue-drop.md
+  required citations: 1/1
+    present: references/finance-metric-spec.md
+  required caveats: 2/2
+    present: This metric does not prove why revenue changed.
+    present: Do not blame churn unless churn actually increased.
+  forbidden concepts: 0 present
+
+FAIL trial-revenue-exclusion
+  query: Should trial accounts count toward net revenue?
+  required concepts: 1/2
+    missing: policies/trial-eligibility.md
+    present: metrics/net-revenue.md
+  required citations: 1/2
+    present: references/finance-metric-spec.md
+    missing: references/support-policy.md
+  required caveats: 0/1
+    missing: Trial activity is excluded from Net Revenue.
+  forbidden concepts: 0 present
+
+Result: fail
+

@@ -1,0 +1,8 @@
+{
+  "name": "knowpack",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "test": "./scripts/smoke-test.sh"
+  }
+}

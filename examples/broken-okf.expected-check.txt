@@ -1,0 +1,10 @@
+Knowpack check
+
+Bundle: examples/broken-okf
+Concepts: 3
+
+ERROR missing-type.md: missing required frontmatter field type
+WARN broken-link.md: broken link missing-target.md
+WARN no-citations.md: missing Citations section
+
+Result: fail

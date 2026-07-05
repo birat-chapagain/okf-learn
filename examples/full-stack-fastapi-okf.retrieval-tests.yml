@@ -1,0 +1,54 @@
+version: 0.1
+bundle: examples/full-stack-fastapi-okf
+tests:
+  - id: deploy-env-vars
+    query: Which environment variables are required before deployment?
+    require:
+      concepts:
+        - configs/environment.md
+        - runbooks/deployment.md
+      citations:
+        - references/env-file.md
+        - references/deployment-docs.md
+      caveats:
+        - Do not deploy with default `changethis` secrets.
+        - Production deployment expects a Traefik proxy handling external HTTP/HTTPS.
+    notes: Deployment env var questions need environment config plus deployment runbook.
+
+  - id: backend-tests
+    query: How do I run backend tests?
+    require:
+      concepts:
+        - tests/backend-tests.md
+        - services/backend.md
+      citations:
+        - references/backend-readme.md
+      caveats:
+        - Backend endpoint, model, and CRUD changes should update backend tests when behavior changes.
+    notes: Backend test questions need test suite and backend service context.
+
+  - id: frontend-client-regeneration
+    query: How do I regenerate the frontend client after backend API changes?
+    require:
+      concepts:
+        - services/frontend.md
+      citations:
+        - references/frontend-readme.md
+      caveats:
+        - If backend API schema changes, regenerate and commit the frontend client.
+    notes: Frontend client questions should retrieve frontend generated-client context.
+
+  - id: docker-compose-services
+    query: What services run in Docker Compose?
+    require:
+      concepts:
+        - configs/docker-compose.md
+        - services/backend.md
+        - services/frontend.md
+      citations:
+        - references/compose-file.md
+        - references/repo-readme.md
+      caveats:
+        - Backend depends on healthy `db` and completed `prestart`.
+    notes: Compose questions need compose config and service context.
+

@@ -1,0 +1,47 @@
+version: 0.1
+bundle: examples/billing-okf
+tests:
+  - id: refund-eligibility
+    query: Can I refund this customer?
+    require:
+      concepts:
+        - policies/refund-window.md
+        - apis/refund-payment.md
+      citations:
+        - references/support-policy.md
+        - references/billing-api-docs.md
+      caveats:
+        - Enterprise contracts can override the standard refund window.
+        - The agent must not create a refund without a support ticket citation.
+    forbid:
+      concepts:
+        - apis/create-invoice.md
+    notes: Refund questions should retrieve refund policy and refund API, not invoice creation.
+
+  - id: explain-revenue-drop
+    query: Why did net revenue drop this week?
+    require:
+      concepts:
+        - metrics/net-revenue.md
+        - metrics/churn-rate.md
+        - playbooks/investigate-revenue-drop.md
+      citations:
+        - references/finance-metric-spec.md
+      caveats:
+        - This metric does not prove why revenue changed.
+        - Do not blame churn unless churn actually increased.
+    notes: Revenue explanations need metric definitions and the investigation playbook.
+
+  - id: trial-revenue-exclusion
+    query: Should trial accounts count toward net revenue?
+    require:
+      concepts:
+        - policies/trial-eligibility.md
+        - metrics/net-revenue.md
+      citations:
+        - references/finance-metric-spec.md
+        - references/support-policy.md
+      caveats:
+        - Trial activity is excluded from Net Revenue.
+    notes: Trial questions require both policy and metric context.
+

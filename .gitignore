@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build/test output
+dist/
+build/
+coverage/
+.tmp/
+tmp/
+*.log
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
+
+# Local agent/tool state
+.openlore/

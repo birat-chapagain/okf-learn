@@ -1,0 +1,49 @@
+Knowpack eval
+
+Bundle: examples/software-okf
+Tests: 3
+
+FAIL debug-503-after-deploy
+  query: Why are API requests returning 503 after deploy?
+  required concepts: 2/3
+    present: runbooks/debug-503.md
+    present: services/api-gateway.md
+    missing: configs/rate-limits.md
+  required citations: 1/2
+    present: references/gateway-ops.md
+    missing: references/service-architecture.md
+  required caveats: 1/2
+    present: Do not change database schema while debugging gateway 503s.
+    missing: A bad rate-limit value can look like a 503 spike when upstream services are healthy.
+  forbidden concepts: 1 present
+    present: databases/gateway-db.md
+
+FAIL change-auth-middleware
+  query: What should I check before changing auth middleware?
+  required concepts: 2/3
+    present: modules/auth-middleware.md
+    missing: tests/request-routing.md
+    present: services/api-gateway.md
+  required citations: 1/2
+    present: references/service-architecture.md
+    missing: references/testing-guide.md
+  required caveats: 1/2
+    missing: Do not log raw API tokens.
+    present: Customer routes must pass through this module.
+  forbidden concepts: 0 present
+
+PASS change-rate-limits
+  query: Which config controls rate limiting and what tests should run?
+  required concepts: 2/2
+    present: configs/rate-limits.md
+    present: tests/request-routing.md
+  required citations: 2/2
+    present: references/gateway-ops.md
+    present: references/testing-guide.md
+  required caveats: 2/2
+    present: Use `shadow` mode before enforcing a large limit change.
+    present: Rate-limit changes should include both `shadow` and `enforce` mode cases.
+  forbidden concepts: 0 present
+
+Result: fail
+

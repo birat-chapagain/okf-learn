@@ -1,0 +1,77 @@
+{
+  "version": "0.1",
+  "bundle": "examples/billing-okf",
+  "query": "Can I refund this customer?",
+  "status": "ok",
+  "concepts": [
+    {
+      "path": "policies/refund-window.md",
+      "type": "Policy",
+      "title": "Refund Window",
+      "why": "Defines refund eligibility and the approval path before any refund action.",
+      "summary": "Customers are eligible for a standard refund within 30 days of the captured payment date. Refunds after 30 days require finance approval, and fraud-related refunds require risk review.",
+      "caveats": [
+        "Enterprise contracts can override the standard refund window.",
+        "The policy does not decide refund amount; it only decides approval path.",
+        "The agent must cite the support ticket or contract note before recommending a refund."
+      ],
+      "citations": [
+        "references/support-policy.md"
+      ],
+      "resource": "policy://support/refund-window"
+    },
+    {
+      "path": "apis/refund-payment.md",
+      "type": "API Endpoint",
+      "title": "Refund Payment",
+      "why": "Defines the endpoint and required inputs for creating a refund request.",
+      "summary": "Creates a refund request for a captured payment. Requires payment_id, amount, reason_code, and support_ticket_id.",
+      "caveats": [
+        "Refunds reduce Net Revenue based on refund effective date.",
+        "Refunds outside the standard window require manual approval.",
+        "The agent must not create a refund without a support ticket citation."
+      ],
+      "citations": [
+        "references/billing-api-docs.md",
+        "references/support-policy.md"
+      ],
+      "resource": "https://api.acme.test/v1/refunds"
+    },
+    {
+      "path": "references/support-policy.md",
+      "type": "Reference",
+      "title": "Support Policy Manual",
+      "why": "Provides source support for refund-window and trial-policy claims.",
+      "summary": "Standard refunds are available within 30 days of captured payment. Refunds after 30 days require finance approval. Fraud-related refunds require risk review.",
+      "caveats": [
+        "This is a fictional source for demonstration. In a real OKF bundle, this file should identify the policy owner and approval workflow."
+      ],
+      "citations": [
+        "Fictional support policy manual for the OKF demo bundle."
+      ],
+      "resource": "https://docs.example.com/support-policy"
+    },
+    {
+      "path": "references/billing-api-docs.md",
+      "type": "Reference",
+      "title": "Billing API Docs",
+      "why": "Provides source support for refund API behavior and required fields.",
+      "summary": "Refunds require a captured payment identifier and a support ticket identifier.",
+      "caveats": [
+        "This is a fictional source for demonstration. In a real OKF bundle, this file should link to the live source document, commit, ticket, or exported documentation snapshot."
+      ],
+      "citations": [
+        "Fictional billing API documentation for the OKF demo bundle."
+      ],
+      "resource": "https://docs.example.com/billing-api"
+    }
+  ],
+  "missing": [],
+  "warnings": [
+    {
+      "kind": "demo_source",
+      "message": "This bundle uses fictional sources and placeholder URLs."
+    }
+  ]
+}
+

@@ -1,0 +1,50 @@
+version: 0.1
+bundle: examples/software-okf
+tests:
+  - id: debug-503-after-deploy
+    query: Why are API requests returning 503 after deploy?
+    require:
+      concepts:
+        - runbooks/debug-503.md
+        - services/api-gateway.md
+        - configs/rate-limits.md
+      citations:
+        - references/gateway-ops.md
+        - references/service-architecture.md
+      caveats:
+        - Do not change database schema while debugging gateway 503s.
+        - A bad rate-limit value can look like a 503 spike when upstream services are healthy.
+    forbid:
+      concepts:
+        - databases/gateway-db.md
+    notes: A 503-after-deploy question should center runbook, service, and config context, not database changes.
+
+  - id: change-auth-middleware
+    query: What should I check before changing auth middleware?
+    require:
+      concepts:
+        - modules/auth-middleware.md
+        - tests/request-routing.md
+        - services/api-gateway.md
+      citations:
+        - references/service-architecture.md
+        - references/testing-guide.md
+      caveats:
+        - Do not log raw API tokens.
+        - Customer routes must pass through this module.
+    notes: Auth changes need module constraints, service context, and tests.
+
+  - id: change-rate-limits
+    query: Which config controls rate limiting and what tests should run?
+    require:
+      concepts:
+        - configs/rate-limits.md
+        - tests/request-routing.md
+      citations:
+        - references/gateway-ops.md
+        - references/testing-guide.md
+      caveats:
+        - Use `shadow` mode before enforcing a large limit change.
+        - Rate-limit changes should include both `shadow` and `enforce` mode cases.
+    notes: Rate-limit questions need config and test context.
+
