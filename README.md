@@ -217,33 +217,22 @@ No embeddings, model calls, or vector database in v0. BM25 is documented as a la
 See:
 
 - [Retrieval Strategy v0](docs/retrieval-strategy-v0.md)
-- [BM25 Experiment Plan](docs/bm25-experiment-plan.md)
 
 ## Project Foundation
 
 Start here:
 
-- [Refined Findings](docs/refined-findings.md)
-- [Foundations](docs/foundations.md)
+- [CLI](docs/cli.md)
+- [Retrieval Strategy v0](docs/retrieval-strategy-v0.md)
 - [Context Pack Spec](docs/context-pack-spec.md)
 - [Eval Output Spec](docs/eval-output-spec.md)
-- [Retrieval Test Spec](docs/retrieval-test-spec.md)
-- [CLI](docs/cli.md)
+- [Validation Rules](docs/validation-rules.md)
+- [Roadmap](docs/roadmap.md)
+- [Foundations](docs/foundations.md)
+- [System Design](docs/system-design.md)
+- [Product Requirements](docs/product-requirements.md)
 - [Google Repo Deep Dive](docs/google-repo-deep-dive.md)
-- [Engineering Principles](docs/engineering-principles.md)
-- [Work Plan](docs/work-plan.md)
 - [Decision Log](docs/decision-log.md)
-- [Agent Target Surface](docs/agent-target-surface.md)
-
-Research reports:
-
-- [OKF Project Blueprint](reports/okf-project-blueprint.html)
-- [OKF Opportunity Report](reports/okf-opportunity-report.html)
-
-Background material:
-
-- [Google OKF Repo Notes](materials/google-okf-repo-notes.md)
-- [Source Map](materials/source-map.md)
 
 ## Current State
 
